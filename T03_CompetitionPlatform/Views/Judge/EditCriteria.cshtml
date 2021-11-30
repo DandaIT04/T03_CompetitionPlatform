@@ -1,0 +1,78 @@
+﻿@model T03_CompetitionPlatform.Models.Criteria
+
+@{
+    Layout = null;
+}
+
+<h1>EditCriteria</h1>
+
+<partial name="~/Views/Judge/_JudgeNav.cshtml" model="@Model" />
+<h1 style="text-align:center; margin-top:100px;">Edit Criteria for: @ViewData["CompName"]</h1>
+
+
+
+
+<form asp-action="EditCriteria">
+
+    <fieldset class="FormContent">
+
+        <div style="width:30%; margin:auto">
+
+            <div>
+                <label asp-for="CriteriaID"></label>
+                <input asp-for="CriteriaID" class="form-control"
+                       readonly />
+                <span asp-validation-for="CriteriaID"
+                      class="text-danger"></span>
+            </div>
+        </div>
+
+        <div style="width:30%; margin:auto">
+
+            <div>
+                <label asp-for="CompetitionID"></label>
+                <input asp-for="CompetitionID" class="form-control"
+                       readonly />
+                <span asp-validation-for="CompetitionID"
+                      class="text-danger"></span>
+            </div>
+        </div>
+
+        <div style="width:30%; margin:auto">
+
+            <div>
+                <label asp-for="CriteriaName"></label>
+                <input asp-for="CriteriaName" class="form-control"
+                       required />
+                <span asp-validation-for="CriteriaName"
+                      class="text-danger"></span>
+            </div>
+        </div>
+
+        <div style="width:30%; margin:auto">
+
+            <div>
+                <label asp-for="Weightage"></label>
+                <input asp-for="Weightage" class="form-control"
+                       required />
+                <span asp-validation-for="Weightage"
+                      class="text-danger"></span>
+            </div>
+        </div>
+
+
+        @if (Convert.ToBoolean(ViewData["error"]))
+        {
+            <p style="width:30%; margin:auto">@ViewData["errormsg"]</p>
+        }
+
+        <div>
+            <div style="width:91.31px; margin-left:auto; margin-top:20px; margin-right:auto">
+                <input type="submit" value="Edit"
+                       class="btn btn-primary" />
+            </div>
+        </div>
+    </fieldset>
+
+</form>
+

@@ -1,0 +1,69 @@
+﻿@model T03_CompetitionPlatform.Models.CompetitionScore
+
+@{
+    ViewData["Title"] = "GradeCriteria";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+<partial name="~/Views/Judge/_JudgeNav.cshtml" model="@Model" />
+
+
+<h1 style="text-align:center; margin-top:100px;">Grade Criteria for: @ViewData["CompetitorName"]</h1>
+
+<hr />
+<div class="row justify-content-center"
+     style=" border-radius: 25px;
+        background: #383B48;
+    ">
+    <div class="col-md-auto justify-content-center">
+        <p style="text-align:center; font-size:150%;color:white;">@ViewData["CriteriaName"]</p>
+
+        <p style="text-align:center; font-size:150%;color:white;">@ViewData["Weightage"]%</p>
+        <form asp-action="GradeCriterion" style="text-align:center; align-content:center; align-items:center;">
+            <fieldset class="FormContent">
+                <div class="form-group">
+
+
+
+                    <label asp-for="Score" class="control-label" style="text-align:center; font-size:150%;color:white;"></label>
+                    <input asp-for="Score" class="form-control" size="65" maxlength="50" required />
+                    <span asp-validation-for="Score" class="text-danger"></span>
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <input asp-for="CriteriaID" class="form-control" size="65" maxlength="50" type="hidden" />
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <input asp-for="CompetitorID" class="form-control" size="65" maxlength="50" type="hidden" />
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <input asp-for="CompetitionID" class="form-control" size="65" maxlength="50" type="hidden" />
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Grade" class="btn btn-primary" />
+                </div>
+            </fieldset>
+
+
+
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.AreaInterest>
+
+<!-- Edited this 7/7/2021-->
+
+@if (Model.ToList().Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewStaff" class="table table-bordered table-hover table-dark table-striped">
+            <thead class="thead-dark">
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <td>@item.AreaInterestID.ToString()</td>
+                    <td>@item.Name</td>
+
+                    <td>
+                        <a asp-action="DeleteArea" asp-controller="Admin" asp-route-id="@item.AreaInterestID" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

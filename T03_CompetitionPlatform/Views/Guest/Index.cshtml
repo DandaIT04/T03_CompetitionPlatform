@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@{
+    ViewData["Title"] = "View Guest";
+}
+@if (Context.Session.GetString("Role") == "Guest")
+{
+    <partial name="~/Views/Guest/_GuestNavbar.cshtml" />
+}
+else if (Context.Session.GetString("Role") == "Admin")
+{
+    <partial name="~/Views/Admin/_AdminNav.cshtml" />
+}
+else if (Context.Session.GetString("Role") == "Judge")
+{
+    <partial name="~/Views/Judge/_JudgeNav.cshtml" />
+}
+
+
+<div class="mb-3">
+    <h2 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">Homepage</h2>
+    <h4>Choose a competition to view:</h4>
+    <partial name="~/Views/Guest/_GuestView.cshtml" model="@Model" />
+</div>

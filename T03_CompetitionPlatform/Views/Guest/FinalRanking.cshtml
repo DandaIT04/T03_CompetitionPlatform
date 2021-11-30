@@ -1,0 +1,81 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.CompSubmissionViewModel>
+
+@{
+    ViewData["Title"] = "Final ranking";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Post Comment</title>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+    </script>
+</head>
+
+<body style="padding:70px;">
+    @if (Context.Session.GetString("Role") == "Guest")
+    {
+        <partial name="~/Views/Guest/_GuestNavbar.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Admin")
+    {
+        <partial name="~/Views/Admin/_AdminNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Judge")
+    {
+        <partial name="~/Views/Judge/_JudgeNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Competitor")
+    {
+        <partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+    }
+
+    <h2 class="text-center mt-4">Final rankings for @Model.ElementAt(0).CompetitionName</h2>
+
+    <div class="jumbotron p-4 p-md-5 mt-2 text-white rounded bg-dark d-flex flex-row justify-content-between">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">First place goes to....</h1>
+            <p class="lead my-3">@Model.ElementAt(0).Salutation @Model.ElementAt(0).CompetitorName</p>
+        </div>
+        <div class='embed-responsive col-md-4'>
+            <object data='~/images/@Model.ElementAt(0).FileSubmitted' type='application/pdf' width='100%' height='400px'></object>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+
+                    <h3 class="mb-0">Second place:</h3>
+
+                    <p class="card-text mb-auto">@Model.ElementAt(1).Salutation @Model.ElementAt(1).CompetitorName</p>
+
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <embed src="~/images/@Model.ElementAt(1).FileSubmitted" type="application/pdf" height="200px">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+
+                    <h3 class="mb-0">Third place:</h3>
+                    <p class="mb-auto">@Model.ElementAt(2).Salutation @Model.ElementAt(2).CompetitorName</p>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <embed src="~/images/@Model.ElementAt(2).FileSubmitted" type="application/pdf" height="200px">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

@@ -1,0 +1,163 @@
+﻿@model T03_CompetitionPlatform.Models.CompSubmissionViewModel
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+    </script>
+    <title>ViewCompetitorWork</title>
+</head>
+
+
+<body style="padding:70px;">
+    @if (Context.Session.GetString("Role") == "Guest")
+    {
+        <partial name="~/Views/Guest/_GuestNavbar.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Admin")
+    {
+        <partial name="~/Views/Admin/_AdminNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Judge")
+    {
+        <partial name="~/Views/Judge/_JudgeNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Competitor")
+    {
+        <partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+    }
+
+    <h3 style="text-align:center; padding-top:50px; padding-bottom:50px;">@Model.CompetitionName</h3>
+    <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="card mx-auto col-md-6">
+
+                @if (Model.FileSubmitted != null)
+                {
+                    <div style="height:400px">
+                        <object data="~/images/@Model.FileSubmitted" style="width: 100%; height: 100%; display: block;"></object>
+                    </div>
+                }
+                else
+                {
+                    <img src="~/images/missingfile.png" class="img-fluid img-thumbnail" height="500px" width="100%">
+                }
+            <div class="card-body">
+                <p class="card-text"><span class="font-weight-bold">Competitor name</span>: <span class="font-weight-light">@Model.Salutation @Model.CompetitorName</span></p>
+                @if (Model.DateTimeFileUpload != null)
+                {
+                    <p class="card-text"><span class="font-weight-bold">Upload date</span>: <span class="font-weight-light">@Model.DateTimeFileUpload?.ToString("dd MMMM yyyy")</span></p>
+                }
+                else
+                {
+                    <p class="card-text"><span class="font-weight-bold">Upload date</span>: <span class="font-italic">NIL</span></p>
+                }
+
+
+                @if (Context.Session.GetString("Role") != "Guest")
+                {
+                    <p class="card-text font-weight-bold text-center">Ranking</p>
+                    @if (Model.Ranking == 1)
+                    {
+                        <h3 class="text-center"><span class="badge badge-pill badge-success">@Model.Ranking</span></h3>
+                    }
+                    else if (Model.Ranking == 2)
+                    {
+                        <h3 class="text-center"><span class="badge badge-pill badge-danger">@Model.Ranking</span></h3>
+                    }
+                    else if (Model.Ranking == 3)
+                    {
+                        <h3 class="text-center"><span class="badge badge-pill badge-warning">@Model.Ranking</span></h3>
+                    }
+                    else if (Model.Ranking is null)
+                    {
+                        <h3 class="text-center"><span class="badge badge-pill badge-secondary">Not set</span></h3>
+                    }
+                    else
+                    {
+                        <h3 class="text-center"><span class="badge badge-pill badge-dark">@Model.Ranking</span></h3>
+                    }
+                }
+
+                <div class="mt-3">
+                    <p class="font-weight-bolder font-italic text-center">Vote now:</p>
+                </div>
+                @if (Model.FileSubmitted != null && Model.DateTimeFileUpload != null && Context.Session.GetInt32(Model.CompetitionID.ToString()) == 0 && (DateTime.Now >= Model.StartDate) && (DateTime.Now <= Model.EndDate))
+                {
+                    <form asp-action="addVote" method="post">
+                        <div class="form-group">
+                            <input asp-for="CompetitionName" value="@Model.CompetitionName" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CompetitorName" value="@Model.CompetitorName" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Salutation" value="@Model.Salutation" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CompetitionID" value="@Model.CompetitionID" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CompetitorID" value="@Model.CompetitorID" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="FileSubmitted" value="@Model.FileSubmitted" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="DateTimeFileUpload" value="@Model.DateTimeFileUpload" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Appeal" value="@Model.Appeal" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="VoteCount" value="@Model.VoteCount" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Ranking" value="@Model.Ranking" type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Vote" class="btn btn-lg btn-block btn-success" />
+                        </div>
+                    </form>
+                }
+                else if (DateTime.Now > Model.EndDate)
+                {
+                    <button type="button" class="btn btn-lg btn-block btn-secondary" disabled>Competition's over!</button>
+                }
+                else if (DateTime.Now < Model.StartDate)
+                {
+                    <button type="button" class="btn btn-lg btn-block btn-secondary" disabled>Competition has not started.</button>
+                }
+                else if (Context.Session.GetInt32(Model.CompetitionID.ToString()) == 1)
+                {
+                    <button type="button" class="btn btn-lg btn-block btn-danger" disabled>You have already voted!</button>
+                }
+                else if (Model.FileSubmitted == null && Model.DateTimeFileUpload == null)
+                {
+                    <button type="button" class="btn btn-lg btn-block btn-warning" disabled>Art not submitted yet.</button>
+                }
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

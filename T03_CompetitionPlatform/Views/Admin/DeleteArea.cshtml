@@ -1,0 +1,54 @@
+﻿@model T03_CompetitionPlatform.Models.AreaInterest
+
+@{
+    ViewData["Title"] = "DeleteArea";
+}
+
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 7/7/2021-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h4 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">DeleteArea</h4>
+<h4 style="margin-top: 20px; font-size:200%; text-align:center;">Are you sure you want to delete this?</h4>
+<hr />
+
+<form asp-action="DeleteArea">
+    <fieldset class="FormContent">
+        <div class="table-responsive">
+            <table id="viewStaff" class="table table-bordered table-hover table-dark table-striped">
+                <thead class="thead-dark">
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <th>AreaInterestID</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr style="text-align:center; align-content:center; align-items:center;">
+                            <td>
+                                <input asp-for="AreaInterestID" readonly
+                                       class="form-control-plaintext"
+                                       style="color:white; text-align:center;"/>
+                            </td>
+                            <td>
+                                <input asp-for="Name" readonly
+                                       class="form-control-plaintext" 
+                                       style="color:white; text-align:center;"/>
+                            </td>
+
+                            <td>
+                                <input type="submit" value="Delete"
+                                       class="btn btn-danger" />
+                            </td>
+                        </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</form>

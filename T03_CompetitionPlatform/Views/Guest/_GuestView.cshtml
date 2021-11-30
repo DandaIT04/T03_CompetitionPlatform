@@ -1,0 +1,56 @@
+﻿<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@{
+    ViewData["Title"] = "Guest View";
+}
+
+
+@if (Model.ToList().Count > 0)
+{
+    @foreach (var item in Model)
+    {
+        <div class="d-flex flex-row flex-wrap justify-content-between" style="border: 2px; border-color:black; border-style:solid; border-radius:18px; margin-bottom:20px">
+            <div class="my-auto ml-4">
+                <p class="font-weight-bold">@item.CompetitionName</p>
+                <p>@item.StartDate?.ToString("dddd, dd MMMM yyyy") to @item.EndDate?.ToString("dddd, dd MMMM yyyy")</p>
+                @if (DateTime.Now > item.EndDate)
+                {
+
+
+                    <p>Status: <span class="text-danger">Ended</span><i class="ml-1 fas fa-window-close"></i></p>
+                    
+                }
+                else if (DateTime.Now < item.StartDate)
+                {
+                    <p>Status: <span class="text-warning">Not ongoing</span><i class="ml-1 fas fa-spinner"></i></p>
+                    
+                }
+                else
+                {
+                    <p>Status: <span class="text-success">Ongoing</span><i class="ml-1 fas fa-check-square"></i></p>
+                    
+                }
+
+            </div>
+            <div class="my-auto ml-5 mr-5">
+
+
+                @if (Context.Session.GetString("Role") == "Judge")
+                {
+                    <a class="btn btn-info" asp-action="ViewCriteria" asp-route-id="@item.CompetitionID" asp-controller="Judge">View</a>
+                }
+                else
+                {
+                    <a class="btn btn-info" asp-action="ViewCompetitors" asp-route-name="@item.CompetitionName" asp-route-id="@item.CompetitionID">View</a>
+                }
+            </div>
+        </div>
+    }
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

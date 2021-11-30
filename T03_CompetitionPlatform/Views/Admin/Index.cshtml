@@ -1,0 +1,24 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.AreaInterest>
+
+@{
+    ViewData["Title"] = "AreaInterest";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 7/7/2021-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h4 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">Areas Of Interest</h4>
+<br />
+<form asp-action="CreateAreaView" style="text-align:center; align-content:center; align-items:center;">
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<br />
+<span style="color:red;">@TempData["AreaDeleteMessage"]</span>
+
+
+<partial name="~/Views/Admin/_ViewArea.cshtml" model="@Model" />

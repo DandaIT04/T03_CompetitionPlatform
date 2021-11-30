@@ -1,0 +1,15 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@if (Model.ToList().Count > 0)
+{
+    @foreach (var item in Model)
+    {
+        <a asp-action="ViewCriteria" asp-route-id="@item.CompetitionID">
+
+            <div class="container-fluid" style="border: 2px; border-color:black; border-style:solid; margin-bottom:20px">
+              <p>@item.CompetitionName</p>
+            </div>
+
+        </a>
+    }
+}

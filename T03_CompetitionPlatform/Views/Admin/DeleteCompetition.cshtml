@@ -1,0 +1,53 @@
+﻿@model T03_CompetitionPlatform.Models.Competition
+
+@{
+    ViewData["Title"] = "DeleteCompetitionView";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 7/7/2021-->
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h1 style="text-align:center; margin-top:100px;">Delete Competition View</h1>
+
+<h3 style="text-align:center; margin-top:10px;">Are you sure you want to delete this?</h3>
+
+<hr />
+<form asp-action="DeleteCompetition">
+    <fieldset class="FormContent">
+        <div class="table-responsive">
+            <table id="viewStaff" class="table table-bordered table-hover table-dark table-striped">
+                <thead class="thead-dark">
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <th>CompetitionID</th>
+                        <th>CompetitionName</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <td>
+                            <input asp-for="CompetitionID" readonly
+                                   class="form-control-plaintext"
+                                   style="color:white; text-align:center;" />
+                        </td>
+                        <td>
+                            <input asp-for="CompetitionName" readonly
+                                   class="form-control-plaintext"
+                                   style="color:white; text-align:center;" />
+                        </td>
+
+                        <td>
+                            <input type="submit" value="Delete"
+                                   class="btn btn-danger" />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</form>

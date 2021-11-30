@@ -1,0 +1,71 @@
+﻿@model T03_CompetitionPlatform.Models.Comment
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Post Comment</title>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+    </script>
+</head>
+<body style="padding:70px;">
+    @if (Context.Session.GetString("Role") == "Guest")
+    {
+        <partial name="~/Views/Guest/_GuestNavbar.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Admin")
+    {
+        <partial name="~/Views/Admin/_AdminNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Judge")
+    {
+        <partial name="~/Views/Judge/_JudgeNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Competitor")
+    {
+        <partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+    }
+
+    <div class="container">
+        <h2 class="mt-5 mx-auto">Write your comment below</h2>
+
+        <hr />
+        <div class="row flex-nowrap">
+            <div class="col-md-12">
+                <span style="color:red;">@TempData["InputEmpty"]</span>
+                <form asp-action="addComment" method="post">
+                    <div class="form-group">
+                        <input asp-for="CompetitionID" value="@ViewData["CompID"]" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="DateTimePosted" value="@DateTime.Now" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <textarea asp-for="Description" style="resize:none; width:100%;display:block;" class="form-control" rows="3" ></textarea>
+                        <!-- <input asp-for="Description" class="form-control" /> -->
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Post comment" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

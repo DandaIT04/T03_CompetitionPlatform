@@ -1,0 +1,15 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@{
+    ViewData["Title"] = "View Competitions";
+}
+
+<h4 class="PageTitle">View Competitions</h4>
+
+<partial name="~/Views/Competitor/_CompetitorNavBar.cshtml"/>
+
+<!-- Add a partial view to display a list of competition records
+ in a tabular format. -->
+<div class="mb-3">
+    <partial name="~/Views/Competitor/_ViewCompetitions.cshtml" model="@Model" />
+</div>

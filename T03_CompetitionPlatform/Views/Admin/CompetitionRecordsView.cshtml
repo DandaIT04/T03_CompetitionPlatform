@@ -1,0 +1,63 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@{
+    ViewData["Title"] = "CompetitionRecordsView";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited t<!-- Edited this 7/7/2021 8pm  Delete Judges Function-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h4 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">CompetitionRecords</h4>
+<br />
+
+<form asp-action="CreateCompetitionsView" style="text-align:center; align-content:center; align-items:center;">
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<br />
+<span style="color:red;">@TempData["CompetitionDeleteMessage"]</span>
+
+@if (Model.ToList().Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewStaff" class="table table-bordered table-hover table-dark table-striped">
+            <thead class="thead-dark">
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <th>CompetitionID</th>
+                    <th>AreaInterestID</th>
+                    <th>CompetitionName</th>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                    <th>ResultReleasedDate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <td>@item.CompetitionID.ToString()</td>
+                        <td>@item.AreaInterestID.ToString()</td>
+                        <td>@item.CompetitionName.ToString()</td>
+                        <td>@item.StartDate.ToString()</td>
+                        <td>@item.EndDate.ToString()</td>
+                        <td>@item.ResultReleasedDate.ToString()</td>
+                        <td>
+                            <a asp-action="DeleteCompetition" asp-controller="Admin" asp-route-id="@item.CompetitionID" class="btn btn-danger">Delete</a>
+
+                            <a asp-action="EditCompetition" asp-controller="Admin" asp-route-id="@item.CompetitionID" class="btn btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

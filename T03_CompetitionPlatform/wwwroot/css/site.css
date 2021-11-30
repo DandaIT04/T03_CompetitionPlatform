@@ -1,0 +1,206 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+/* Custom css here*/
+
+/* Index.cshtml */
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    align-content:center;
+}
+
+.myLoginButton {
+    background-color: #FFA500;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    width:150px;
+    height:219px;
+    font-size: 25px;
+}
+
+.myRegisterButton {
+    background-color: #4169E1;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 150px;
+    height: 219px;
+    font-size: 25px;
+}
+
+.textClass p {
+    font-family: Arial;
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    padding-top: 36px;
+    padding-bottom: 36px;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: center;
+    font-size: 2000%;
+    color: white;
+    -webkit-text-stroke: 15px black;
+    -webkit-text-fill-color: transparent;
+    margin-left:5px;
+}
+
+
+/*Reponsive media css below*/
+
+@media screen and (max-width:985px) {
+
+    .button-container {
+        margin-bottom: -285px;
+    }
+
+}
+
+@media screen and (max-width:767px) {
+
+    .button-container {
+        margin-bottom: -235px;
+    }
+}
+
+
+
+@media screen and (max-width:600px) {
+
+    .button-container {
+        margin-bottom: -95px;
+    }
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 900%;
+        padding: 115px;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 900%;
+        padding: 115px;
+    }
+}
+
+@media screen and (max-width:476px) {
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 900%;
+        padding: 86px;
+    }
+}
+
+@media screen and (max-width:425px) {
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 800%;
+        padding: 50px;
+    }
+}
+
+@media screen and (max-width:330px) {
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 800%;
+        padding: 35px;
+    }
+}
+
+@media screen and (max-width:290px) {
+
+    .textClass p {
+        -webkit-text-stroke: 7px black;
+        font-size: 800%;
+        padding: 25px;
+    }
+}

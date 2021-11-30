@@ -1,0 +1,70 @@
+﻿@model T03_CompetitionPlatform.Models.CompetitionSubmission
+
+@{
+    ViewData["Title"] = "UploadPhoto";
+}
+
+<partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+<h1>Upload Photo</h1>
+
+<h4>CompetitionSubmission</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UploadPhoto">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompetitionID" class="control-label"></label>
+                <input asp-for="CompetitionID" readonly class="form-control" />
+                <span asp-validation-for="CompetitionID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompetitorID" class="control-label"></label>
+                <input asp-for="CompetitorID" readonly class="form-control" />
+                <span asp-validation-for="CompetitorID" class="text-danger"></span>
+            </div>
+            <!--<div class="form-group">
+            <label asp-for="FileSubmitted" class="control-label"></label>
+            <input asp-for="FileSubmitted" class="form-control" />
+            <span asp-validation-for="FileSubmitted" class="text-danger"></span>
+            </div>-->
+            <div class="form-group">
+                <label asp-for="FileSubmitted"
+                       class="col-sm-3 col-form-label">
+                    New Photo
+                </label>
+                <div class="col-sm-9">
+                    <input asp-for="FileSubmitted" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTimeFileUpload" class="control-label"></label>
+                <input asp-for="DateTimeFileUpload" readonly class="form-control" />
+                <span asp-validation-for="DateTimeFileUpload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appeal" class="control-label"></label>
+                <input asp-for="Appeal" readonly class="form-control" />
+                <span asp-validation-for="Appeal" readonly class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VoteCount" class="control-label"></label>
+                <input asp-for="VoteCount" readonly class="form-control" />
+                <span asp-validation-for="VoteCount" readonly class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ranking" class="control-label"></label>
+                <input asp-for="Ranking" readonly class="form-control" />
+                <span asp-validation-for="Ranking" readonly class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

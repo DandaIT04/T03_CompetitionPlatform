@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<!-- -->
+<!--Start of containers -->
+<!-- Edited this 7/7/2021-->
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <p style="margin-top: 70px;
+        font-family: Arial;
+        font-size: 300%;
+        text-align: center;">Statistics</p>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table id="viewStaff" class="table table-bordered table-hover table-dark table-striped">
+        <thead class="thead-dark">
+            <tr style="text-align:center; align-content:center; align-items:center;">
+                <th>Areas of Interest</th>
+                <th>Competition Records</th>
+                <th>Amount of Judges</th>
+                <th>Amount of Competitors</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="text-align:center; align-content:center; align-items:center;">
+                <td>
+                    @TempData["areaCount"]
+                </td>
+                <td>
+                    @TempData["competitionCount"]
+                </td>
+
+                <td>
+                    @TempData["judgesCount"]
+                </td>               
+                <td>
+                    @TempData["competitorsCount"]
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

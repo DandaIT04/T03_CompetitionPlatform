@@ -1,0 +1,66 @@
+﻿@model T03_CompetitionPlatform.Models.Competitor
+
+@{
+    ViewData["Title"] = "CompetitorRegister";
+}
+<!-- Not FINAL NAVBAR ***-->
+<partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+
+<h4 class="PageTitle"> Register Competitor </h4>
+<hr />
+<!-- Start of form -->
+<form asp-action="CompetitorRegister">
+    <fieldset class="formContent">
+        <!-- Name Input -->
+        <div class="form-group row">
+            <label asp-for="CompetitorName"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input asp-for="CompetitorName" class="form-control" />
+                <span asp-validation-for="CompetitorName"
+                      class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Salutation Input -->
+        <div class="form-group row">
+            <label asp-for="Salutation"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <select asp-for="Salutation" asp-items="@ViewData["SalutationList"] as List<SelectListItem>"
+                        class=" = " form-control">
+                </select>
+            </div>
+        </div>
+        <!-- Address Input -->
+        <div class="form-group row">
+            <label asp-for="EmailAddr"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input asp-for="EmailAddr" class="form-control" />
+                <span asp-validation-for="EmailAddr"
+                      class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Password Input -->
+        <div class="form-group row">
+            <label asp-for="Password"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password"
+                      class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Submission Button -->
+        <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </fieldset>
+
+
+
+
+</form>

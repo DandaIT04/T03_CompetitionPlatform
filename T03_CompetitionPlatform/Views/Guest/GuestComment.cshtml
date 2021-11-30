@@ -1,0 +1,86 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Comment>
+
+@{
+    ViewData["Title"] = "Guest Comment";
+}
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+    </script>
+    <title>ViewCompetitorWork</title>
+</head>
+
+<body style="padding:70px;">
+    @if (Context.Session.GetString("Role") == "Guest")
+    {
+        <partial name="~/Views/Guest/_GuestNavbar.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Admin")
+    {
+        <partial name="~/Views/Admin/_AdminNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Judge")
+    {
+        <partial name="~/Views/Judge/_JudgeNav.cshtml" />
+    }
+    else if (Context.Session.GetString("Role") == "Competitor")
+    {
+        <partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+    }
+
+    <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-md-12 mx-auto">
+                <div class="text-center page-header">
+                    @if (Model.ToList().Count == 1)
+                    {
+                        <h1><small>@Model.ToList().Count comment</small></h1>
+                    }
+                    else
+                    {
+                        <h1><small>@Model.ToList().Count comments</small></h1>
+                    }
+                </div>
+                <div class="comments-list">
+                    @if (Model.ToList().Count > 0)
+                    {
+                        @foreach (var c in Model)
+                        {
+                            <div class="media">
+                                <p class="pull-right mr-3" style="max-width:100px;"><small>@c.DateTimePosted.ToString("dddd, dd MMMM yyyy")</small></p>
+                                <a class="">
+                                    <img src="~/images/guesticon.png" style="max-width:80%; max-height:80px;" class="mx-auto">
+                                </a>
+                                <div class="media-body ml-3 mb-3" style="border-bottom-style:solid; max-width:100%;">
+                                    <h6 class="media-heading user_name">User</h6>
+                                    <p>@c.Description</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-center" style="color:darkcyan">Be the first to comment!</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <input type="button" class="btn btn-dark btn-lg mx-auto" value="Add a comment" onclick="location.href='@Url.Action("PostComment", "Guest", new { id = ViewData["CompID"] })'" />
+        </div>
+    </div>
+</body>
+</html>

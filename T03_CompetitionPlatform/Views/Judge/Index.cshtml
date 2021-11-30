@@ -1,0 +1,12 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+@{
+    ViewData["Title"] = "View Comp";
+}
+
+<partial name="~/Views/Judge/_JudgeIndexNav.cshtml" />
+
+<h4 class="PageTitle">Judges HomePage</h4>
+
+
+<partial name="~/Views/Guest/_GuestView.cshtml" model="@Model" />

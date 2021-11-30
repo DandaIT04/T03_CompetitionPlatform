@@ -1,0 +1,182 @@
+﻿@model T03_CompetitionPlatform.Models.AdminJudgeViewModel
+
+@{
+    ViewData["Title"] = "ManageJudgesView";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 27/6/2021 8pm  Delete Judges Function-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h4 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">ManageJudgesView</h4>
+<br />
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b>Assign or remove judges to/from competitions</b></p>
+<hr />
+<br />
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><u>Competitions that require judges</u></b></p>
+<hr />
+
+<hr />
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["MissingInput1"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["Duplicate"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["WrongInterest"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["CompetitionNull"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["JudgeNull"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["AlreadyAssigned"]</pre></b></p>
+
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><pre>@TempData["EndDateExceeded"]</pre></b></p>
+<hr />
+
+<div style="align-content:center; align-items:center; text-align:center;">
+    <a asp-action="RemoveJudges" asp-controller="Admin" class="btn btn-primary" style="align-content:center; align-items:center; text-align:center;">Remove Judges</a>
+</div>
+
+<hr />
+<br />
+
+@if (Model.compList.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewCompJudge" class="table table-striped table-bordered table-hover table-dark">
+            <thead class="thead-dark">
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <th>AreaInterestID</th>
+                    <th>CompetitionID</th>
+                    <th>CompetitionName</th>
+                    <th>Amount of Judges</th>
+                    <th>Available Judges(ID)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var competitions in Model.compList)
+                {
+                    int countComp = 0;
+                    bool foundInCompetitionJudge = false;
+
+                    @foreach (var competitionJudge in Model.compJudgeList)
+                    {
+                        if (competitionJudge.CompetitionID == competitions.CompetitionID)
+                        {
+                            countComp += 1;
+                        }
+                    }
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <td>@competitions.AreaInterestID.ToString()</td>
+                    <td>@competitions.CompetitionID.ToString()</td>
+                    <td>@competitions.CompetitionName.ToString()</td>
+                    <td>@countComp.ToString()</td>
+                        @foreach (var judges in Model.judgeList)
+                        {
+                            if (judges.AreaInterestID == competitions.AreaInterestID)
+                            {
+                                bool notFound = false;
+                                @foreach (var compJudges in Model.compJudgeList)
+                                {
+                                    if (compJudges.JudgeID == judges.JudgeID)
+                                    {
+                                        notFound = true;
+                                    }
+                                }
+
+                                if (notFound == false)
+                                {
+                                    Model.CompetitionID = competitions.CompetitionID;
+                                    Model.JudgeID = judges.JudgeID;
+                <td>
+                    @judges.JudgeID.ToString()
+
+                    <p>   </p>
+
+                    <form asp-action="ManageJudgesView" style="text-align:center; align-content:center; align-items:center;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+
+                            <label asp-for="CompetitionID" class="control-label" style="text-align:center;" hidden></label>
+                            <input asp-for="CompetitionID" class="form-control" hidden/>
+                            <span asp-validation-for="CompetitionID" class="text-danger"></span>
+
+                            <label asp-for="JudgeID" class="control-label" style="text-align:center;"hidden></label>
+                            <input asp-for="JudgeID" class="form-control" hidden/>
+
+                            <span asp-validation-for="JudgeID" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </td>
+                                }
+                                }
+                                }
+
+                            </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+}
+
+else
+{
+    <span style="color:red">No competition record found!</span>
+}
+
+<br />
+<p class="text-center" style="font-family: Arial;font-size: 150%;"><b><u>Judges in database</u></b></p>
+<hr />
+
+@if (Model.judgeList.Count > 0 && Model.areaList.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewJudge" class="table table-striped table-bordered table-hover table-dark">
+            <thead class="thead-dark">
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <th>JudgeID</th>
+                    <th>JudgeName</th>
+                    <th>AreaInterestID</th>
+                    <th>Area Name</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.judgeList)
+                {
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <td>@item.JudgeID.ToString()</td>
+                        <td>@item.JudgeName.ToString()</td>
+                        @foreach (var areas in Model.areaList)
+                        {
+                            if (item.AreaInterestID == areas.AreaInterestID)
+                            {
+                                <td>@areas.AreaInterestID.ToString()</td>
+                                <td>@areas.Name.ToString()</td>
+                            }
+                        }
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+}
+
+else
+{
+    <span style="color:red">No judge record found!</span>
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.CompetitionSubmission>
+
+@{
+    ViewData["Title"] = "ViewJoinedCompetitions";
+}
+<partial name="~/Views/Competitor/_CompetitorNavBar.cshtml" />
+<h1>ViewJoinedCompetitions</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompetitionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompetitorID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileSubmitted)
+            </th>
+                <!--Html.DisplayNameFor(model => model.DateTimeFileUpload)-->
+            <th>
+                @Html.DisplayNameFor(model => model.Appeal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VoteCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ranking)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompetitionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompetitorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileSubmitted)
+            </td>
+
+                <!--Html.DisplayFor(modelItem => item.DateTimeFileUpload)-->
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Appeal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoteCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ranking)
+            </td>
+            <td>
+                <a asp-action="UploadPhoto" asp-controller="Competitor"
+                   asp-route-id="@item.CompetitionID">Upload Photo</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@model T03_CompetitionPlatform.Models.CompetitionViewModel
+
+@{
+    Layout = null;
+}
+
+
+<partial name="~/Views/Judge/_JudgeNav.cshtml" model="@Model" />
+<h1 style="text-align:center; margin-top:100px; margin-bottom:50px;">Criteria for: @ViewData["CompName"]</h1>
+<a asp-action="CreateCriteria"><p style="text-align:center">+Create criteria</p></a>
+
+    @if (Model.criteriaList.Count > 0)
+    {
+        <div class="table-responsive" style="width: 60%; margin:auto;">
+            <table id="ViewCriteria" class="table table-bordered table-hover table-dark table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>CriteriaID</th>
+                        <th>CriteriaName</th>
+                        <th>Weightage</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.criteriaList)
+                    {
+                    <tr>
+
+                        <td>@item.CriteriaID</td>
+                        <td>@item.CriteriaName</td>
+                        <td>@item.Weightage.ToString()%</td>
+                        <td>
+
+                            <a class="btn btn-secondary" asp-action="EditCriteria"
+                               asp-route-id="@item.CriteriaID">Edit</a>
+
+                            <a class="btn btn-secondary" asp-action="DeleteCriteria"
+                               asp-route-id="@item.CriteriaID">Delete</a>
+                            
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <span style="color:red;"><p style="text-align:center;">No record found!</p></span>
+    }
+
+
+
+

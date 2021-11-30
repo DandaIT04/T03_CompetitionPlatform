@@ -1,0 +1,38 @@
+﻿@model T03_CompetitionPlatform.Models.AreaInterest
+
+@{
+    ViewData["Title"] = "CreateAreaView";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 7/7/2021-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h1 style="text-align:center; margin-top:100px;">Create Area of Interest</h1>
+
+<hr />
+<div class="row justify-content-center"
+     style=" border-radius: 25px;
+        background: #383B48;
+    ">
+    <div class="col-md-auto justify-content-center">
+        <form asp-action="CreateArea" style="text-align:center; align-content:center; align-items:center;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <label asp-for="Name" class="control-label" style="text-align:center; font-size:150%;color:white;"></label>
+                <input asp-for="Name" class="form-control" size="65" maxlength="50" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,84 @@
+﻿@model T03_CompetitionPlatform.Models.Competition
+
+@{
+    ViewData["Title"] = "EditCompetition";
+}
+
+@{
+    Layout = null;
+}
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h4 class="PageTitle" style="margin-top: 70px; font-size:200%; text-align:center;">Edit Competition</h4>
+
+<span style="color:red;">@TempData["StartDate>EndDate"]</span>
+<span style="color:red;">@TempData["StartDate<EndDate"]</span>
+
+<span style="color:red;">@TempData["ResultDate<StartDate"]</span>
+<span style="color:red;">@TempData["ResultDate<EndDate"]</span>
+
+<span style="color:red;">@TempData["EndDateMissing"]</span>
+
+<span style="color:red;">@TempData["TodayDateError"]</span>
+
+<span style="color:red;">@TempData["IDnull"]</span>
+
+<span style="color:red;">@TempData["NameNull"]</span>
+
+<span style="color:red;">@TempData["InputEmpty"]</span>
+
+<span style="color:red;">@TempData["AreaIDFalse"]</span>
+
+<span style="color:red;">@TempData["CompetitionNameExist"]</span>
+
+<span style="color:red;">@TempData["NameMissing"]</span>
+
+<hr />
+
+<div class="row justify-content-center" style="        border-radius: 25px;
+        background: #383B48;
+    ">
+    <div class="col-md-auto justify-content-center">
+        <form asp-action="EditCompetition" style="text-align:center; align-content:center; align-items:center;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <br />
+                <label asp-for="CompetitionID" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="CompetitionID" readonly class="form-control-plaintext" style="text-align:center; font-size:125%; color:white;" />
+
+                <span asp-validation-for="CompetitionID" class="text-danger"></span>
+                <br />
+                <label asp-for="AreaInterestID" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="AreaInterestID" readonly class="form-control-plaintext" size="65" maxlength="255" style="text-align:center; font-size:125%; color:white;" />
+
+                <span asp-validation-for="CompetitionID" class="text-danger"></span>
+                <br />
+                <label asp-for="CompetitionName" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="CompetitionName" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;" />
+
+                <span asp-validation-for="CompetitionName" class="text-danger"></span>
+                <br />
+                <label asp-for="StartDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="StartDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;" />
+
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <br />
+                <label asp-for="EndDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="EndDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;" />
+
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <br />
+                <label asp-for="ResultReleasedDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="ResultReleasedDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;" />
+
+                <span asp-validation-for="ResultReleasedDate" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,112 @@
+﻿@model T03_CompetitionPlatform.Models.AdminCreateCompDisplayArea
+
+@{
+    ViewData["Title"] = "CreateCompetitionsView";
+}
+
+@{
+    Layout = null;
+}
+
+<!-- Edited this 7/7/2021-->
+
+<partial name="~/Views/Admin/_AdminNav.cshtml" />
+
+<h1 style="text-align:center; margin-top:100px;">Create Competitions</h1>
+
+<hr />
+<span style="color:red;">@TempData["StartDate>EndDate"]</span>
+<span style="color:red;">@TempData["StartDate<EndDate"]</span>
+
+<span style="color:red;">@TempData["ResultDate<StartDate"]</span>
+<span style="color:red;">@TempData["ResultDate<EndDate"]</span>
+
+<span style="color:red;">@TempData["EndDateMissing"]</span>
+
+<span style="color:red;">@TempData["TodayDateError"]</span>
+
+<span style="color:red;">@TempData["IDnull"]</span>
+
+<span style="color:red;">@TempData["NameNull"]</span>
+
+<span style="color:red;">@TempData["InputEmpty"]</span>
+
+<span style="color:red;">@TempData["AreaIDFalse"]</span>
+
+<span style="color:red;">@TempData["CompetitionNameExist"]</span>
+
+<hr />
+
+@if (Model.areaList.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewCompJudge" class="table table-bordered table-hover table-dark table-striped">
+            <thead class="thead-dark">
+                <tr style="text-align:center; align-content:center; align-items:center;">
+                    <th>AreaInterestID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var competitions in Model.areaList)
+                {
+                    <tr style="text-align:center; align-content:center; align-items:center;">
+                        <td>@competitions.AreaInterestID.ToString()</td>
+                        <td>@competitions.Name.ToString()</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+}
+
+else
+{
+    <span style="color:red">No competition record found!</span>
+}
+
+<br />
+<div class="row justify-content-center"      style="        border-radius: 25px;
+        background: #383B48;
+    ">
+    <div class="col-md-auto justify-content-center">
+        <form asp-action="CreateCompetition" style="text-align:center; align-content:center; align-items:center;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <br />
+                <label asp-for="AreaInterestID" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="AreaInterestID" class="form-control" style="text-align:center; font-size:125%;"/>
+
+                <span asp-validation-for="AreaInterestID" class="text-danger"></span>
+                <br />
+                <label asp-for="CompetitionName" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="CompetitionName" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;"/>
+
+                <span asp-validation-for="CompetitionName" class="text-danger"></span>
+                <br />
+                <label asp-for="StartDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="StartDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;"/>
+
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <br />
+                <label asp-for="EndDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="EndDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;"/>
+
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <br />
+                <label asp-for="ResultReleasedDate" class="control-label" style="text-align:center; color:white; font-size:125%;"></label>
+                <input asp-for="ResultReleasedDate" class="form-control" size="65" maxlength="255" style="text-align:center; font-size:125%;"/>
+
+                <span asp-validation-for="ResultReleasedDate" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

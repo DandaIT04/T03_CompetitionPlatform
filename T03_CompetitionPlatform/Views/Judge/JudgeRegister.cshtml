@@ -1,0 +1,95 @@
+﻿@model T03_CompetitionPlatform.Models.Judge
+
+@{
+    ViewData["Title"] = "JudgeRegister";
+}
+
+
+
+<header>
+    <!-- A grey navbar that expands horizontally at medium device -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <!-- The brand(or icon) of the navbar -->
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home"
+           style="font-size:32px; font-weight:bold; color:darkorange;">
+            CJP
+        </a>
+        <!-- Toggle/collapsible Button, also known as hamburger button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#staffNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Links in the navbar, displayed as drop-down list when collapsed -->
+        <div class="collapse navbar-collapse" id="staffNavbar">
+            <!-- Links that are aligned to the left,
+            mr-auto: right margin auto-adjusted -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Index"
+                       style="font-size: 20px;color: white;">
+                        Return
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<h1 style="margin-top:100px">Register as Judge</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="JudgeRegister">
+            <fieldset>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="JudgeName" class="control-label"></label>
+                    <input asp-for="JudgeName" class="form-control" />
+                    <span asp-validation-for="JudgeName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Salutation"
+                           class="control-label"></label>
+
+                    <select asp-for="Salutation" asp-items="@ViewData["SalutationList"] as List<SelectListItem>"
+                            class="form-control"></select>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="AreaInterestID"
+                           class="control-label">AreaofInterest</label>
+
+
+                    <select asp-for="AreaInterestID"
+                            asp-items="@ViewData["AOIList"] as List<SelectListItem>"
+                            class="form-control"></select>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="EmailAddr" class="control-label"></label>
+                    <input asp-for="EmailAddr" class="form-control" />
+                    <span asp-validation-for="EmailAddr" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

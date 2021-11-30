@@ -1,0 +1,56 @@
+﻿@model IEnumerable<T03_CompetitionPlatform.Models.Competition>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompetitionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaInterestID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompetitionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResultReleasedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompetitionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaInterestID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompetitionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultReleasedDate)
+            </td>
+            <td>
+                <a asp-action="JoinCompetition" asp-controller="Competitor"
+                   asp-route-competitionID="@item.CompetitionID">Join</a>
+            </td>
+        </tr>
+
+}
+    </tbody>
+</table>
